@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Framework\Base;
+namespace Framework\Foundation;
 
 use Error;
 
 /**
  * The Config class provides a simple configuration management system.
  *
- * @package App\Framework\Base
+ * @package Framework\Foundation
  */
-final class Config
+class Config
 {
     /**
      * The array of configuration values.
@@ -24,7 +24,7 @@ final class Config
      * @param string $path
      * @return void
      *
-     * @throws Error Unable to find config file
+     * @throws Error Unable to find config file.
      */
     public static function resolve(string $path)
     {
@@ -32,7 +32,15 @@ final class Config
             throw new Error('Unable to import configuration due to not being able to find file: ' . $path);
         }
 
-        self::$config = require $path;
+        $config = @include $path;
+
+        foreach ($config as $key => $value) {
+            if (!empty($value)) {
+                $config[$key] = $value;
+            }
+        }
+
+        self::$config = array_merge(self::$config, $config);
     }
 
     /**
@@ -83,9 +91,12 @@ final class Config
      *
      * @param string $key
      * @param mixed $value
+     * @return Config
      */
-    public static function set(string $key, $value)
+    public static function set(string $key, $value): Config
     {
         self::$config[$key] = $value;
+
+        return new self();
     }
 }

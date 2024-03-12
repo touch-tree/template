@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Framework\Base;
+namespace Framework\Foundation;
 
+use Framework\Http\HeaderBag;
 use Throwable;
 
 /**
@@ -10,9 +11,9 @@ use Throwable;
  * This class is designed to facilitate the separation of concerns
  * in a web application by handling the rendering of HTML views.
  *
- * @package App\Framework\Base
+ * @package Framework\Foundation
  */
-final class View
+class View
 {
     /**
      * The path to the view file.
@@ -29,6 +30,13 @@ final class View
     protected array $data;
 
     /**
+     * Headers to be included in the response.
+     *
+     * @var HeaderBag
+     */
+    protected HeaderBag $headers;
+
+    /**
      * View constructor.
      *
      * @param string $path The path to the view file.
@@ -38,6 +46,8 @@ final class View
     {
         $this->data = $data;
         $this->path = $path;
+
+        $this->headers = new HeaderBag();
     }
 
     /**
@@ -62,7 +72,45 @@ final class View
     public function with(string $key, $value): View
     {
         $this->data[$key] = $value;
+
         return $this;
+    }
+
+    /**
+     * Set a header for the response.
+     *
+     * @param string $name The name of the header.
+     * @param string $value The value of the header.
+     * @return View The current View instance.
+     */
+    public function with_header(string $name, string $value): View
+    {
+        $this->headers->set($name, $value);
+
+        return $this;
+    }
+
+    /**
+     * Set headers for the response.
+     *
+     * @param HeaderBag $headers The headers for the response.
+     * @return View The current View instance.
+     */
+    public function with_headers(HeaderBag $headers): View
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    /**
+     * Get the headers for the response.
+     *
+     * @return HeaderBag
+     */
+    public function get_headers(): HeaderBag
+    {
+        return $this->headers;
     }
 
     /**
@@ -72,11 +120,7 @@ final class View
      */
     public function render(): ?string
     {
-        $path = realpath(base_path() . '/public/views/' . str_replace('.', DIRECTORY_SEPARATOR, $this->path) . '.php');
-
-        if (!file_exists($path)) {
-            return 'View not found: ' . $path;
-        }
+        $path = realpath($this->path) ?: realpath(base_path() . '/resources/views/' . str_replace('.', DIRECTORY_SEPARATOR, $this->path) . '.php');
 
         try {
             extract($this->data);

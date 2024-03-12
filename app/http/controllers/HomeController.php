@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Framework\Base\View;
+use Framework\Foundation\View;
+use Framework\Http\Request;
 
 class HomeController
 {
     /**
-     * Default view
-     *
+     * @param Request $request
      * @return View
      */
-    public function index(): View
+    public function home(Request $request): View
     {
-        return view('home');
+        return view('home.home');
     }
 }

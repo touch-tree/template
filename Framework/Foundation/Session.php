@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Framework\Base;
+namespace Framework\Foundation;
 
 /**
  * The Session class provides a simple interface for working with session data.
  * It includes methods for flashing data, retrieving data, and checking if a
  * key exists in the session.
  *
- * @package App\Framework\Base
+ * @package Framework\Foundation
  */
-final class Session
+class Session
 {
     /**
      * Flash a key-value pair to the session.
@@ -20,7 +20,7 @@ final class Session
      */
     public function flash(string $key, $value): Session
     {
-        $_SESSION[$key] = $value;
+        $this->put('flash.' . $key, $value);
 
         return $this;
     }
@@ -35,6 +35,7 @@ final class Session
     public function pull(string $key, $default = null)
     {
         $value = $this->get($key, $default);
+
         unset($_SESSION[$key]);
 
         return $value;
@@ -49,7 +50,18 @@ final class Session
      */
     public function get(string $key, $default = null)
     {
-        return $_SESSION[$key] ?? $default;
+        $keys = explode('.', $key);
+        $current = $_SESSION;
+
+        foreach ($keys as $nested_key) {
+            if (is_array($current) && array_key_exists($nested_key, $current)) {
+                $current = $current[$nested_key];
+            } else {
+                return $default;
+            }
+        }
+
+        return $current;
     }
 
     /**
@@ -61,14 +73,29 @@ final class Session
      */
     public function put($key, $value = null): Session
     {
-        if (!is_array($key)) {
-            $_SESSION[$key] = $value;
+        if (is_string($key) && !is_null($value)) {
+            $keys = explode('.', $key);
+            $current = &$_SESSION;
 
-            return $this;
+            foreach ($keys as $nested_key) {
+                if (!is_array($current)) {
+                    $current = [];
+                }
+
+                if (!isset($current[$nested_key])) {
+                    $current[$nested_key] = [];
+                }
+
+                $current = &$current[$nested_key];
+            }
+
+            $current = $value;
         }
 
-        foreach ($key as $k => $v) {
-            $_SESSION[$k] = $v;
+        if (is_array($key) && is_null($value)) {
+            foreach ($key as $k => $v) {
+                $_SESSION[$k] = $v;
+            }
         }
 
         return $this;
@@ -88,12 +115,20 @@ final class Session
     /**
      * Remove a key from the session.
      *
-     * @param string $key The key to remove from the session.
+     * @param string|array $key The key to remove from the session.
      * @return Session The current Session instance.
      */
-    public function forget(string $key): Session
+    public function forget($key): Session
     {
-        unset($_SESSION[$key]);
+        if (is_string($key)) {
+            unset($_SESSION[$key]);
+        }
+
+        if (is_array($key)) {
+            foreach ($key as $k) {
+                unset($_SESSION[$k]);
+            }
+        }
 
         return $this;
     }
@@ -121,7 +156,7 @@ final class Session
     }
 
     /**
-     * Start session
+     * Start session.
      *
      * @return bool True when the session started successfully, else false.
      */

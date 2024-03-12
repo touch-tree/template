@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Framework\Base;
+namespace Framework\Foundation;
+
+use Framework\Http\HeaderBag;
 
 /**
  * The Http class provides a simple interface for sending HTTP requests using cURL.
  * It allows you to set custom headers and handle responses.
  * This class is designed to simplify the interaction with APIs.
  *
- * @package App\Framework\Base
+ * @package Framework\Foundation
  */
-final class Http
+class Http
 {
     /**
-     * Request headers
+     * Request headers.
      *
-     * @var array
+     * @var HeaderBag
      */
-    public array $headers = [];
+    private HeaderBag $headers;
 
     /**
-     * Request response
+     * Request response.
      *
      * @var bool|string
      */
@@ -28,23 +30,34 @@ final class Http
     /**
      * Set headers for the request.
      *
-     * @param array $headers The custom headers for the request.
-     * @return self
+     * @param HeaderBag $headers The custom headers for the request.
+     * @return Http
      */
-    public static function set_headers(array $headers): self
+    public static function set_headers(HeaderBag $headers): Http
     {
         $instance = new self();
+
         $instance->headers = $headers;
 
         return $instance;
     }
 
     /**
-     * Get response
+     * Get the HeaderBag instance containing HTTP headers.
+     *
+     * @return HeaderBag The HeaderBag instance.
+     */
+    public function headers(): HeaderBag
+    {
+        return $this->headers;
+    }
+
+    /**
+     * Get response.
      *
      * @return bool|string
      */
-    public function get_response()
+    public function response()
     {
         return $this->response;
     }
@@ -74,13 +87,18 @@ final class Http
     private function request(string $method, string $endpoint, array $data = [])
     {
         $curl = curl_init($endpoint);
+        $headers = [];
+
+        foreach ($this->headers()->all() as $key => $value) {
+            $headers[] = $key . ': ' . $value;
+        }
 
         $this->many_curl_setopt(
             $curl,
             [
                 [CURLOPT_CUSTOMREQUEST, $method],
                 [CURLOPT_RETURNTRANSFER, true],
-                [CURLOPT_HTTPHEADER, $this->headers],
+                [CURLOPT_HTTPHEADER, $headers],
             ]
         );
 

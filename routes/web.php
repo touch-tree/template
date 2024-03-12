@@ -12,7 +12,7 @@
 |--------------------------------------------------------------------------
 */
 
-use App\Framework\Routing\Router;
 use App\Http\Controllers\HomeController;
+use Framework\Routing\Router;
 
-Router::get('/', [HomeController::class, 'index'])->name('home');
+Router::get('/', [HomeController::class, 'home'])->name('home');
