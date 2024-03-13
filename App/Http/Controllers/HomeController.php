@@ -13,6 +13,6 @@ class HomeController
      */
     public function home(Request $request): View
     {
-        return view('home.home');
+        return view('home');
     }
 }

@@ -24,6 +24,7 @@ use Framework\Http\Request;
 use Framework\Http\Response;
 use Framework\Http\Server;
 use Framework\Routing\Router;
+use Framework\Support\URL;
 
 /**
  * Redirect to a specified route.
@@ -64,12 +65,35 @@ function view(string $path, array $data = []): View
 /**
  * Get path to 'resources' directory.
  *
- * @param string $path
- * @return false|string
+ * @param string|null $path
+ * @return string
  */
-function resource_path(string $path)
+function resource_path(string $path = null): string
 {
-    return realpath(base_path('resources/' . ltrim($path)));
+    $resource = 'resources/';
+
+    if ($path) {
+        $resource .= ltrim($path);
+    }
+
+    return base_path($resource);
+}
+
+/**
+ * Get path to 'storage' directory.
+ *
+ * @param string|null $path
+ * @return string
+ */
+function storage_path(string $path = null): string
+{
+    $storage = 'storage/';
+
+    if ($path) {
+        $storage .= ltrim($path);
+    }
+
+    return base_path($storage);
 }
 
 /**
@@ -253,20 +277,10 @@ function base_path(string $path = null): string
     $directory = dirname(__DIR__);
 
     if ($path) {
-        $directory .= DIRECTORY_SEPARATOR . trim($path, DIRECTORY_SEPARATOR);
+        $directory .= '/' . trim($path, '/');
     }
 
     return $directory;
-}
-
-/**
- * Get the Base URL of the application.
- *
- * @return string The Base URL.
- */
-function base_url(): string
-{
-    return ($_SERVER['REQUEST_SCHEME'] ?? 'http') . ':' . DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR . ($_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_ADDR']) . DIRECTORY_SEPARATOR;
 }
 
 /**
@@ -291,11 +305,11 @@ function back(): RedirectResponse
  *
  * @param string|null $path The path for the URL.
  *
- * @return string The generated URL.
+ * @return URL|string The generated URL.
  */
-function url(?string $path): string
+function url(string $path = null)
 {
-    return base_url() . ltrim($path, DIRECTORY_SEPARATOR);
+    return $path ? URL::to($path) : app(URL::class);
 }
 
 /**
@@ -306,7 +320,7 @@ function url(?string $path): string
  */
 function asset(string $path): string
 {
-    return config('url', base_url()) . '/public/' . trim($path, DIRECTORY_SEPARATOR);
+    return URL::to('/public/') . trim($path, '/');
 }
 
 /**

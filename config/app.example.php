@@ -18,26 +18,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Base URL
+    | APP URL
     |--------------------------------------------------------------------------
     |
-    | This value sets the base URL of the application. If provided, it should
-    | be the full URL, including the protocol. Leave empty for a relative URL.
+    | This value sets the base URL of the application. It should
+    | be the full URL, including the protocol and URI.
+    |
+    | If this does not work. You can overrule the URL value.
+    |
+    | If assets are not properly loaded, then the APP URL is not referencing the
+    | 'index.php' file of this project properly.
     |
     */
-    'url' => '',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Project Directory
-    |--------------------------------------------------------------------------
-    |
-    | The full path to the project directory of the application. Set this
-    | whenever assets are not being loaded properly. It should point to
-    | the root directory of your project.
-    |
-    */
-    'directory' => '',
+    'app_url' => '',
 
     /*
     |--------------------------------------------------------------------------
