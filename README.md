@@ -1,4 +1,4 @@
-# @feather-boilerplate
+# @rosegold-boilerplate
 
 A simple yet configurable lightweight framework boilerplate for PHP.
 
