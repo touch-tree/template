@@ -1,6 +1,6 @@
 # @feather-boilerplate
 
-A simple and highly configurable lightweight framework for PHP.
+A simple yet configurable lightweight framework boilerplate for PHP.
 
 ## Requirements
 - PHP version 7.4
