@@ -1,5 +1,7 @@
 # @framework-template
 
+A simple and highly configurable lightweight framework for PHP.
+
 ## Requirements
 - PHP version 7.4
 - opcache for PHP 7.4
