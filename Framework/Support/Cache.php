@@ -3,9 +3,11 @@
 namespace Framework\Support;
 
 /**
- * The Cache class provides file-based caching.
+ * The Cache class provides file-based caching for storing and retrieving data from the filesystem.
  *
- * This class allows you to store and retrieve data from files in the filesystem.
+ * This class offers methods to interact with the cache, including storing, retrieving, checking existence,
+ * and removing items from the cache. It supports setting a time-to-live (TTL) for cached items and provides methods
+ * for incrementing and decrementing cached values.
  *
  * @package Framework\Support
  */
@@ -36,7 +38,7 @@ class Cache
      * Check if a cached item is expired.
      *
      * @param array $cached The cached item data.
-     * @return bool True if the item is expired, false otherwise.
+     * @return bool true if the item is expired, false otherwise.
      */
     private static function is_expired(array $cached): bool
     {
@@ -71,7 +73,7 @@ class Cache
      * Determine if an item exists in the cache.
      *
      * @param string $key The unique identifier for the cached item.
-     * @return bool True if the item exists in the cache, false otherwise.
+     * @return bool true if the item exists in the cache, false otherwise.
      */
     public static function has(string $key): bool
     {
@@ -82,7 +84,7 @@ class Cache
      * Remove an item from the cache.
      *
      * @param string $key The unique identifier for the cached item to be removed.
-     * @return bool True if the item was successfully removed, false otherwise.
+     * @return bool true if the item was successfully removed, false otherwise.
      */
     public static function forget(string $key): bool
     {

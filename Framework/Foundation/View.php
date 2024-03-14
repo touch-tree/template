@@ -7,9 +7,8 @@ use Throwable;
 
 /**
  * The View class is responsible for rendering the content of view files.
- * It provides a simple method to render views with optional data.
- * This class is designed to facilitate the separation of concerns
- * in a web application by handling the rendering of HTML views.
+ *
+ * This class provides a simple method to render views with optional data.
  *
  * @package Framework\Foundation
  */
@@ -40,7 +39,7 @@ class View
      * View constructor.
      *
      * @param string $path The path to the view file.
-     * @param array $data Data to be passed to the view.
+     * @param array $data [optional] Data to be passed to the view.
      */
     public function __construct(string $path, array $data = [])
     {
@@ -54,7 +53,7 @@ class View
      * Create a new instance of the View class.
      *
      * @param string $path The path to the view file.
-     * @param array $data Data to be passed to the view.
+     * @param array $data [optional] Data to be passed to the view.
      * @return View
      */
     public static function make(string $path, array $data = []): View

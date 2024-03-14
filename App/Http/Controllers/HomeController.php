@@ -8,6 +8,8 @@ use Framework\Http\Request;
 class HomeController
 {
     /**
+     * Default view.
+     *
      * @param Request $request
      * @return View
      */

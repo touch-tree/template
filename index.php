@@ -12,7 +12,9 @@
 |--------------------------------------------------------------------------
 */
 
+use Framework\Foundation\Application;
 use Framework\Foundation\Config;
+use Framework\Foundation\Container;
 use Framework\Foundation\Session;
 use Framework\Http\Kernel;
 
@@ -22,6 +24,12 @@ require_once 'routes/web.php';
 
 Session::start();
 
-Config::resolve(__DIR__ . '/config/app.php');
+$app = new Application(__DIR__);
+
+Config::set_many(
+    [
+        'app' => include base_path('/config/app.php'),
+    ]
+);
 
 app(Kernel::class)->handle(request());

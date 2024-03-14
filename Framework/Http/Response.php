@@ -3,7 +3,9 @@
 namespace Framework\Http;
 
 /**
- * The Response class represents an HTTP response in a web application.
+ * The Response class represents an HTTP response in the application.
+ *
+ * This class encapsulates the content, status code, and headers of an HTTP response.
  *
  * @package Framework\Http
  */
@@ -146,7 +148,7 @@ class Response
      *
      * @param array $data The data to be JSON-encoded and sent in the response.
      * @param int $status_code The HTTP status code for the response. Default is 200 (OK).
-     * @return JsonResponse
+     * @return JsonResponse The JsonResponse instance.
      */
     public function json(array $data, int $status_code = Response::HTTP_OK): JsonResponse
     {
