@@ -1,4 +1,4 @@
-# @framework-template
+# @feather-boilerplate
 
 A simple and highly configurable lightweight framework for PHP.
 
