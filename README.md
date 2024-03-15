@@ -1,4 +1,4 @@
-# @rosegold-boilerplate
+# @framework-boilerplate
 
 A simple yet configurable lightweight framework boilerplate for PHP.
 
