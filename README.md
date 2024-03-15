@@ -9,7 +9,7 @@ A simple yet configurable lightweight framework boilerplate for PHP.
 ## Installation
 First, navigate to your webserver's document root and clone this repo:
 
-    git clone https://github.com/echtyushi/feather-boilerplate
+    git clone https://github.com/echtyushi/framework-boilerplate
 
 ## Credentials
 
