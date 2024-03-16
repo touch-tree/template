@@ -1,6 +1,6 @@
 # @framework-boilerplate
 
-A framework using the [echtyushi/framework](https://github.com/echtyushi/framework/) framework.
+A boilerplate using the [echtyushi/framework](https://github.com/echtyushi/framework/) framework.
 
 ## Requirements
 - PHP version 7.4
