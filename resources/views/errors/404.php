@@ -9,7 +9,12 @@
 
 <body>
 
-<p>Page not found</p>
+<p>Page not found.</p>
+
+<?php if (config('app.development_mode') === true) { ?>
+    <p>Tried to access: <?php echo url()->current(); ?></p>
+    <p>Base URL: <?php echo url()::base_url(); ?></p>
+<?php } ?>
 
 <?php echo view('partials.footer')->render(); ?>
 
