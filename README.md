@@ -1,6 +1,6 @@
 # @framework-boilerplate
 
-A simple yet configurable lightweight framework boilerplate for PHP.
+A framework using the [echtyushi/framework](https://github.com/echtyushi/framework/) framework.
 
 ## Requirements
 - PHP version 7.4
@@ -13,7 +13,7 @@ First, navigate to your webserver's document root and clone this repo:
 
 ## Credentials
 
-For the config of our application make changes to `config/api.php`, you can add your own config file and include them in `index.php`.
+You can add your own configuration by including them in `index.php`.
 
 ### php.ini
 
