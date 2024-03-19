@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <?= view('partials.header')->render(); ?>
+    <?php echo view('partials.header')->render(); ?>
 
     <title>Document</title>
 </head>
@@ -11,7 +11,7 @@
 
 <div>Welcome to this website!</div>
 
-<?= view('partials.footer')->render(); ?>
+<?php echo view('partials.footer')->render(); ?>
 </body>
 
 </html>
