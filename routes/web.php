@@ -13,6 +13,6 @@
 */
 
 use App\Http\Controllers\HomeController;
-use Framework\Routing\Router;
+use Framework\Support\Helpers\Route;
 
-Router::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'home'])->name('home');

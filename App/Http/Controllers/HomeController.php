@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Framework\Foundation\View;
+use Framework\Component\View;
 use Framework\Http\Request;
 
 class HomeController

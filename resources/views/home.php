@@ -12,6 +12,7 @@
 <div>Welcome to this website!</div>
 
 <?php echo view('partials.footer')->render(); ?>
+
 </body>
 
 </html>
