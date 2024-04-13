@@ -1,6 +1,6 @@
-# @framework-boilerplate
+# @poisn
 
-A boilerplate using the [echtyushi/framework](https://github.com/echtyushi/framework/) framework.
+A framework using the [echtyushi/framework](https://github.com/echtyushi/framework/) package.
 
 ## Requirements
 - PHP version 7.4
