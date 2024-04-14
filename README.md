@@ -1,6 +1,6 @@
 ## About Weave
 
-Weave is a web-based framework designed to seperate developers from dependency-heavy and overly complicated frameworks to one that is easy-to-use, understand, and to develop in. 
+Weave is a web-based framework designed to seperate developers from dependency-heavy and overly complicated frameworks for one that is easy-to-use, understand, and to develop in. 
 
 This framework uses the [weave](https://github.com/weavable/framework/) package.
 
