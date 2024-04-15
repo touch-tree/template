@@ -11,7 +11,7 @@ class DefaultPipe extends Pipe
     /**
      * Handle an incoming HTTP request.
      *
-     * This method represents a test middleware that processes a HTTP request before it reaches our application.
+     * This method represents a test middleware that processes an HTTP request before it reaches our application.
      *
      * @param Request $request The incoming HTTP request.
      * @param Closure $next The next middleware in the pipeline.
@@ -19,8 +19,6 @@ class DefaultPipe extends Pipe
      */
     public function handle(Request $request, Closure $next)
     {
-        // Your middleware logic goes here
-
         return $next($request);
     }
 }

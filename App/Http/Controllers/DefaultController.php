@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Framework\Component\View;
 use Framework\Http\Request;
+use Framework\Routing\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
     /**
      * Default view.

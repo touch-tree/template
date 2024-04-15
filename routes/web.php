@@ -12,7 +12,6 @@
 |--------------------------------------------------------------------------
 */
 
-use App\Http\Controllers\DefaultController;
-use Framework\Support\Helpers\Route;
+use Framework\Support\Helpers\Router;
 
-Route::get('/', [DefaultController::class, 'default'])->name('default');
+Router::get('/', ['App\Http\Controllers\DefaultController', 'default'])->name('default');
