@@ -13,4 +13,4 @@ Made with the [weave](https://github.com/weavable/framework/) package.
 ## Installation
 First, navigate to your webserver's document root and clone this repo:
 
-    git clone https://github.com/weavable/weave
+    git clone https://github.com/weavable/weave your-weave-project
