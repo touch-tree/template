@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Framework\Http\FormRequest;
 
-class TestRequest extends FormRequest
+class DefaultRequest extends FormRequest
 {
     /**
      * Provide rules to standardize the validation for a request based on this form request.

@@ -6,7 +6,7 @@ use Closure;
 use Framework\Http\Request;
 use Framework\Pipeline\Pipe;
 
-class TestPipe extends Pipe
+class DefaultPipe extends Pipe
 {
     /**
      * Handle an incoming HTTP request.

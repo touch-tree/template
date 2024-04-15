@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Framework\Component\View;
 use Framework\Http\Request;
 
-class HomeController
+class DefaultController
 {
     /**
      * Default view.
@@ -13,7 +13,7 @@ class HomeController
      * @param Request $request
      * @return View
      */
-    public function home(Request $request): View
+    public function default(Request $request): View
     {
         return view('home');
     }

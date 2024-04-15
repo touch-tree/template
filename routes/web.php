@@ -12,7 +12,7 @@
 |--------------------------------------------------------------------------
 */
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DefaultController;
 use Framework\Support\Helpers\Route;
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', [DefaultController::class, 'default'])->name('default');

@@ -3,7 +3,7 @@
 use Framework\Component\Container;
 use Framework\Component\Service;
 
-class TestService extends Service
+class DefaultService extends Service
 {
     /**
      * Service constructor.
@@ -12,6 +12,6 @@ class TestService extends Service
      */
     public function __construct(Container $app)
     {
-        parent::__construct($app);
+
     }
 }
