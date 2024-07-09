@@ -1,5 +1,3 @@
-## About Me
-
 > [!NOTE]  
 > This framework doesn't come with anything else than what is inside this repository, meaning that composer is not required, but is usable in this framework. 
 
